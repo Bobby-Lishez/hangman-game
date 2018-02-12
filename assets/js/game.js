@@ -68,7 +68,7 @@ function youWin(){
 function loadCountry() {
     document.getElementById("start").style.visibility = 'hidden';
     //choose a random word from the array of possible words
-    aanswer = countries[Math.floor(Math.random() * countries.length)];
+    answer = countries[Math.floor(Math.random() * countries.length)];
         //or the debug version
         //answer = prompt("pick a country to test");
     console.log(answer);
