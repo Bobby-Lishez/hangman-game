@@ -19,7 +19,7 @@ var countries = ["afghanistan","albania","algeria","andorra","angola","antigua a
                 "paraguay","peru","philippines","poland","portugal","qatar","republic of the congo","romania","russia","rwanda",
                 "sao tome and principe","samoa","san marino","saudi arabia","senegal","serbia","seychelles","sierra leone","singapore",
                 "slovakia","slovenia","solomon islands","somalia","south africa","south korea","south sudan","spain","sri lanka",
-                "st kitts and nevis","st lucia","st vincent and the grenadines","sudan","suriname","swaziland","sweden","switzerland",
+                "saint kitts and nevis","saint lucia","saint vincent and the grenadines","sudan","suriname","swaziland","sweden","switzerland",
                 "syria","taiwan","tajikistan","tanzania","thailand","togo","tonga","trinidad and tobago","tunisia","turkey","turkmenistan",
                 "tuvalu","uganda","ukraine","uruguay","united arab emirates","united kingdom","united states of america","uzbekistan",
                 "vanuatu","vatican city","venezuela","vietnam","yemen","zambia","zimbabwe"]
@@ -29,6 +29,11 @@ var blanks;
 var secretAnswer;
 var lives;
 var score= 0;
+var victorySong = document.getElementById("anthem");
+
+
+
+
 //function to let us update our blanks with chosen letters at the correct place
 function setCharAt(str,index,chr) {
     if(index > str.length-1) return str;
@@ -42,11 +47,14 @@ function gameOver(){
 function youWin(){
     score++;
     document.querySelector("#score").innerHTML = "Score: " + score;
+    document.querySelector("#anthem").src = "assets/sounds/" + answer + ".mp3";
     alert("Good Job! The answer was " + answer + ". Keep it up!");
+    victorySong.play();
     loadCountry();
 }
 //start
 function loadCountry() {
+    document.getElementById("start").style.visibility = 'hidden';
     //choose a word from the array of possible words
     answer = countries[Math.floor(Math.random() * countries.length)];
     console.log(answer);
@@ -61,7 +69,7 @@ function loadCountry() {
     document.querySelector("#target").innerHTML = blanks;
     console.log(secretAnswer);
     //reset our lives
-    lives = 10;
+    lives = 6;
     document.querySelector("#lives").innerHTML = "Lives Remaining: " + lives;
 }
 
