@@ -1,3 +1,7 @@
 body {
     background: url(../images/background.jpg);
 }
+#victoryScreen{
+    background: lightgrey;
+    visibility: hidden;
+}

@@ -24,8 +24,13 @@ var countries = ["afghanistan","albania","algeria","andorra","angola","antigua a
                 "tuvalu","uganda","ukraine","uruguay","united arab emirates","united kingdom","united states of america","uzbekistan",
                 "vanuatu","vatican city","venezuela","vietnam","yemen","zambia","zimbabwe"]
 
+//the randomly chosen country
 var answer;
+//the name of the country properly capitalized to appear on-screen
+var caseAnswer;
+//the name of the country hidden, represented by blanks
 var blanks;
+//the name of the country formatted to replace the blanks
 var secretAnswer;
 var lives;
 var score= 0;
@@ -41,22 +46,31 @@ function setCharAt(str,index,chr) {
 }
 //function to bring up our game over screen
 function gameOver(){
+    //Display game over message
+    //Prompt "play again?"
     document.write("Game Over! The answer was " + answer + ". Reload the page to play again");
 }
 //and a function to bring up our victory screen
 function youWin(){
+    //Increment wins counter
     score++;
     document.querySelector("#score").innerHTML = "Score: " + score;
+    //Display the flag of the chosen country and play the national anthem
+    document.querySelector("#correct").innerHTML = answer;
     document.querySelector("#anthem").src = "assets/sounds/" + answer + ".mp3";
-    alert("Good Job! The answer was " + answer + ". Keep it up!");
+    document.querySelector("#flag").src = "assets/images/" + answer + ".svg";
+    //alert("Good Job! The answer was " + answer + ". Keep it up!");
     victorySong.play();
+    document.getElementById("victoryScreen").style.visibility = "visible";
     loadCountry();
 }
 //start
 function loadCountry() {
     document.getElementById("start").style.visibility = 'hidden';
-    //choose a word from the array of possible words
-    answer = countries[Math.floor(Math.random() * countries.length)];
+    //choose a random word from the array of possible words
+    aanswer = countries[Math.floor(Math.random() * countries.length)];
+        //or the debug version
+        //answer = prompt("pick a country to test");
     console.log(answer);
     //Create a string of blanks to represent our word
     blanks = "";
@@ -104,15 +118,3 @@ else {for (var j = 0; j<secretAnswer.length; j++){
 //disable the chosen letter from future selections 
 //wait for another selection
 }
-
-
-
-//Victory:
-    //Display the flag of the chosen country and play the national anthem
-    //Increment wins counter
-    //Prompt "Play again?"
-
-//Game over:
-    //Display game over message
-    //Increment losses counter
-    //Prompt "play again?"
