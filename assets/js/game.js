@@ -1,7 +1,14 @@
-//intro screen; click or press a key to continue
+//To do list:
+//onscreen buttons for mobile use CHECK
+//intro screen/victory screen/game over screen
+//make game an object
+//disable non-letter keys from responses CHECK
+//fix "-" and "'" issue
+//fix capitalization
 
 
-//global variables
+
+//variables
 var countries = ["afghanistan","albania","algeria","andorra","angola","antigua and barbuda","argentina","armenia",
                  "australia","austria","azerbaijan","bahamas","bahrain","bangladesh","barbados","belarus","belgium",
                 "belize","benin","bhutan","bolivia","bosnia and herzegovenia","botswana","brazil","brunei","bulgaria",
@@ -23,7 +30,13 @@ var countries = ["afghanistan","albania","algeria","andorra","angola","antigua a
                 "syria","taiwan","tajikistan","tanzania","thailand","togo","tonga","trinidad and tobago","tunisia","turkey","turkmenistan",
                 "tuvalu","uganda","ukraine","uruguay","united arab emirates","united kingdom","united states of america","uzbekistan",
                 "vanuatu","vatican city","venezuela","vietnam","yemen","zambia","zimbabwe"]
-
+    
+// defalut letter array
+var letters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", 
+                "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
+//changing array
+var unGuessedLetters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", 
+                        "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
 //the randomly chosen country
 var answer;
 //the name of the country properly capitalized to appear on-screen
@@ -37,8 +50,35 @@ var score= 0;
 var victorySong = document.getElementById("anthem");
 
 
-
-
+//functions
+//function to let us check whether a letter is in our word
+function checkLetter(char) {
+    //If the chosen letter is not in our word, lose a life
+if (answer.indexOf(char) === -1) {
+    lives--;
+    document.querySelector("#lives").innerHTML = "Lives Remaining: " + lives;
+    //if we run out of lives, we lose.
+    if (lives === 0){gameOver()};
+    //otherwise, game continues
+}
+//If the chosen letter is in our word:
+else {for (var j = 0; j<secretAnswer.length; j++){
+    //replace all instances of that letter in our blanks with the letter
+    if (secretAnswer.charAt(j) === char){
+        blanks = setCharAt(blanks, j, secretAnswer.charAt(j));
+        console.log(blanks);        
+    }
+    //and update the screen
+    document.querySelector("#target").innerHTML = blanks;
+    //then, if our word is complete, go to victory,
+    if (blanks === secretAnswer){youWin()};
+    //otherwise, game continues
+}
+}  
+//Disable the key from future guesses
+    document.getElementById(char).disabled=true;
+    unGuessedLetters[letters.indexOf(char)] = "_";
+}
 //function to let us update our blanks with chosen letters at the correct place
 function setCharAt(str,index,chr) {
     if(index > str.length-1) return str;
@@ -59,14 +99,25 @@ function youWin(){
     document.querySelector("#correct").innerHTML = answer;
     document.querySelector("#anthem").src = "assets/sounds/" + answer + ".mp3";
     document.querySelector("#flag").src = "assets/images/" + answer + ".svg";
-    //alert("Good Job! The answer was " + answer + ". Keep it up!");
     victorySong.play();
     document.getElementById("victoryScreen").style.visibility = "visible";
-    loadCountry();
+    //disable all keystrokes and buttons
+    for (var m = 0; m<letters.length; m++) {
+        document.getElementById(letters[m]).disabled=true;
+        unGuessedLetters[m] = "_";
+    }
+    document.getElementById("start").style.visibility = "visible";
+    document.querySelector("#start").innerHTML = "Next";
 }
 //start
 function loadCountry() {
+    //hide the start button
     document.getElementById("start").style.visibility = 'hidden';
+    //reset the un-guessed letters for keystrokes and enable all the letter buttons
+    for (var k = 0; k<letters.length; k++) {
+        document.getElementById(letters[k]).disabled=false;
+        unGuessedLetters[k] = letters[k];
+    }
     //choose a random word from the array of possible words
     answer = countries[Math.floor(Math.random() * countries.length)];
         //or the debug version
@@ -87,34 +138,13 @@ function loadCountry() {
     document.querySelector("#lives").innerHTML = "Lives Remaining: " + lives;
 }
 
-
-
-
 //wait for a keypress or button click
 document.onkeyup = function(event) {
     console.log(event.key);
-//If the chosen letter is not in our word, lose a life
-if (answer.indexOf(event.key) === -1) {
-    lives--;
-    document.querySelector("#lives").innerHTML = "Lives Remaining: " + lives;
-    //if we run out of lives, we lose.
-    if (lives === 0){gameOver()};
-    //otherwise, game continues
-}
-//If the chosen letter is in our word:
-else {for (var j = 0; j<secretAnswer.length; j++){
-    //replace all instances of that letter in our blanks with the letter
-    if (secretAnswer.charAt(j) === event.key){
-        blanks = setCharAt(blanks, j, secretAnswer.charAt(j));
-        console.log(blanks);        
+    //chosen = unGuessedLetters.indexOf(event.key);
+    //only do a thing for letter keys
+    if (unGuessedLetters.indexOf(event.key) === -1){
+        //do nothing
     }
+    else {checkLetter(event.key);}
     }
-    //and update the screen
-    document.querySelector("#target").innerHTML = blanks;
-    //then, if our word is complete, go to victory,
-    if (blanks === secretAnswer){youWin()};
-    //otherwise, game continues
-}   
-//disable the chosen letter from future selections 
-//wait for another selection
-}
