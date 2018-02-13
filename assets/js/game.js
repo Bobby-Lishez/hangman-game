@@ -70,10 +70,11 @@ else {for (var j = 0; j<secretAnswer.length; j++){
     }
     //and update the screen
     document.querySelector("#target").innerHTML = blanks;
+}
     //then, if our word is complete, go to victory,
     if (blanks === secretAnswer){youWin()};
     //otherwise, game continues
-}
+
 }  
 //Disable the key from future guesses
     document.getElementById(char).disabled=true;
