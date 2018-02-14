@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Geo Hangman</title>
     <link rel = "stylesheet" type = "text/css" href = "assets/css/reset.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel = "stylesheet" type = "text/css" href = "assets/css/style.css">
@@ -12,65 +12,86 @@
 <body>
     <div class = "container">
         <div class="card mt-5" id="mainContent">
-                <div class="card-header">
-                  <h1>Geo Hangman</h1>
-                </div>
-                <div class="card-body">
-                  <p id = "target"></p>
-                  <p id = "lives"></p>
-                  <p id = "score">Score: 0</p>
-                  <div class = "row">
-                   <!-- <div class = "col-sm-4"> -->
-                      <button id = "a" onclick = "checkLetter('a');" type = "button" class = "btn btn-primary" disabled>A</button>
-                      <button id = "b" onclick = "checkLetter('b');" type = "button" class = "btn btn-success" disabled>B</button>
-                      <button id = "c" onclick = "checkLetter('c');" type = "button" class = "btn btn-danger" disabled>C</button>
-                      <button id = "d" onclick = "checkLetter('d');" type = "button" class = "btn btn-warning" disabled>D</button>
-                      <button id = "e" onclick = "checkLetter('e');" type = "button" class = "btn btn-primary" disabled>E</button>
-                    <!-- </div> -->
+            <div class="card-header text-center">
+              <h1>Geo Hangman</h1>
+            </div>
+            <div class="card-body">
+                <!-- <div class= "row"> -->
+                  <div id = "controls">
+                    <div id ="controlsText">
+                      <p id = "target"></p>
+                      <p id = "lives"></p>
+                      <p id = "score">Score: 0</p>
+                      <div class = "row">
                     <!-- <div class = "col-sm-4"> -->
-                        <button id = "f" onclick = "checkLetter('f');" type = "button" class = "btn btn-success" disabled>F</button>
-                        <button id = "g" onclick = "checkLetter('g');" type = "button" class = "btn btn-danger" disabled>G</button>
-                        <button id = "h" onclick = "checkLetter('h');" type = "button" class = "btn btn-warning" disabled>H</button>
-                        <button id = "i" onclick = "checkLetter('i');" type = "button" class = "btn btn-primary" disabled>I</button>
-                    <!-- </div> -->
-                    <!-- <div class = "col-sm-4"> -->
-                        <button id = "j" onclick = "checkLetter('j');" type = "button" class = "btn btn-success" disabled>J</button>
-                        <button id = "k" onclick = "checkLetter('k');" type = "button" class = "btn btn-danger" disabled>K</button>
-                        <button id = "l" onclick = "checkLetter('l');" type = "button" class = "btn btn-warning" disabled>L</button>
-                        <button id = "m" onclick = "checkLetter('m');" type = "button" class = "btn btn-primary" disabled>M</button>
-                    <!-- </div> -->
-                  </div>
-                  <div class = "row">
-                      <!-- <div class = "col-sm-4"> -->
-                          <button id = "n" onclick = "checkLetter('n');" type = "button" class = "btn btn-success" disabled>N</button>
-                          <button id = "o" onclick = "checkLetter('o');" type = "button" class = "btn btn-danger" disabled>O</button>
-                          <button id = "p" onclick = "checkLetter('p');" type = "button" class = "btn btn-warning" disabled>P</button>
-                          <button id = "q" onclick = "checkLetter('q');" type = "button" class = "btn btn-primary" disabled>Q</button>
-                          <button id = "r" onclick = "checkLetter('r');" type = "button" class = "btn btn-success" disabled>R</button>
-                      </di/v>
-                      <!-- <div class = "col-sm-4"> -->
-                          <button id = "s" onclick = "checkLetter('s');" type = "button" class = "btn btn-danger" disabled>S</button>
-                          <button id = "t" onclick = "checkLetter('t');" type = "button" class = "btn btn-warning" disabled>T</button>
-                          <button id = "u" onclick = "checkLetter('u');" type = "button" class = "btn btn-primary" disabled>U</button>
-                          <button id = "v" onclick = "checkLetter('v');" type = "button" class = "btn btn-success" disabled>V</button>
+                        <button id = "a" type = "button" class = "btn btn-primary letterButton" disabled>A</button>
+                        <button id = "b" type = "button" class = "btn btn-success letterButton" disabled>B</button>
+                        <button id = "c" type = "button" class = "btn btn-danger letterButton" disabled>C</button>
+                        <button id = "d" type = "button" class = "btn btn-warning letterButton" disabled>D</button>
+                        <button id = "e" type = "button" class = "btn btn-primary letterButton" disabled>E</button>
                       <!-- </div> -->
                       <!-- <div class = "col-sm-4"> -->
-                          <button id = "w" onclick = "checkLetter('w');" type = "button" class = "btn btn-danger" disabled>W</button>
-                          <button id = "x" onclick = "checkLetter('x');" type = "button" class = "btn btn-warning" disabled>X</button>
-                          <button id = "y" onclick = "checkLetter('y');" type = "button" class = "btn btn-primary" disabled>Y</button>
-                          <button id = "z" onclick = "checkLetter('z');" type = "button" class = "btn btn-success" disabled>Z</button>
+                          <button id = "f" type = "button" class = "btn btn-success letterButton" disabled>F</button>
+                          <button id = "g" type = "button" class = "btn btn-danger letterButton" disabled>G</button>
+                          <button id = "h" type = "button" class = "btn btn-warning letterButton" disabled>H</button>
+                          <button id = "i" type = "button" class = "btn btn-primary letterButton" disabled>I</button>
                       <!-- </div> -->
+                      <!-- <div class = "col-sm-4"> -->
+                          <button id = "j" type = "button" class = "btn btn-success letterButton" disabled>J</button>
+                          <button id = "k" type = "button" class = "btn btn-danger letterButton" disabled>K</button>
+                          <button id = "l" type = "button" class = "btn btn-warning letterButton" disabled>L</button>
+                          <button id = "m" type = "button" class = "btn btn-primary letterButton" disabled>M</button>
+                      <!-- </div> -->
+                      </div>
+                      <div class = "row">
+                        <!-- <div class = "col-sm-4"> -->
+                            <button id = "n" type = "button" class = "btn btn-success letterButton" disabled>N</button>
+                            <button id = "o" type = "button" class = "btn btn-danger letterButton" disabled>O</button>
+                            <button id = "p" type = "button" class = "btn btn-warning letterButton" disabled>P</button>
+                            <button id = "q" type = "button" class = "btn btn-primary letterButton" disabled>Q</button>
+                            <button id = "r" type = "button" class = "btn btn-success letterButton" disabled>R</button>
+                      <!-- </div> -->
+                        <!-- <div class = "col-sm-4"> -->
+                            <button id = "s" type = "button" class = "btn btn-danger letterButton" disabled>S</button>
+                            <button id = "t" type = "button" class = "btn btn-warning letterButton" disabled>T</button>
+                            <button id = "u" type = "button" class = "btn btn-primary letterButton" disabled>U</button>
+                            <button id = "v" type = "button" class = "btn btn-success letterButton" disabled>V</button>
+                        <!-- </div> -->
+                        <!-- <div class = "col-sm-4"> -->
+                            <button id = "w" type = "button" class = "btn btn-danger letterButton" disabled>W</button>
+                            <button id = "x" type = "button" class = "btn btn-warning letterButton" disabled>X</button>
+                            <button id = "y" type = "button" class = "btn btn-primary letterButton" disabled>Y</button>
+                            <button id = "z" type = "button" class = "btn btn-success letterButton" disabled>Z</button>
+                        <!-- </div> -->
+                        </div>
+                    <!-- end controlsText -->
+                    </div>
+                <!-- end controls -->
                   </div>
-                </div>
-        </div>
-    <button id = "start" onclick = "loadCountry();">Start</button>
-    <div class = "card mt-3" id = "victoryScreen">
+                <!-- <div class = "col-sm-4"> -->
+                  <img id = "hangman" height = "400px" width = "400px" src = "http://greentreesarborcareinc.com/wp-content/uploads/2014/01/image-placeholder.jpg">
+                <!-- </div> -->
+              <!-- end row -->
+              <!-- </div> -->
+            <!-- end card-bocy -->
+            </div>
+          <!-- end card -->
+          </div>
+        
+    <button id = "start">Start</button>
+    <div class = "card mt-3 mb-3" id = "victoryScreen">
       <div class = "card-body">
-        <p>Your last correct guess was <span id = "correct">Albania!</span></p>
-        <img id = "flag" width = "500px" height = "400px" src ="assets/images/albania.svg">
+        <p>Your last correct guess was <span id = "correct">Albania</span>!</p>
+        <img id = "flag" width = "500px" height = "400px" src ="#">
       </div>
     </div>
+    <!-- end container -->
+  </div>
     <audio id = "anthem" src = "assets/sounds/albania.mp3"></audio>
+    <script
+    src="https://code.jquery.com/jquery-3.3.1.js"
+    integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+    crossorigin="anonymous"></script>
     <script src = "assets/js/game.js"></script>
 </body>
 

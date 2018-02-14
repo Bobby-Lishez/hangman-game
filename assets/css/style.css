@@ -1,10 +1,25 @@
 body {
     background: url(../images/background.jpg);
 }
-#victoryScreen{
-    background: lightgrey;
+#controls {
+    float: left;
+}
+#controlsText {
+    font-size: 30px;
+}
+#hangman{
+    float: right;
+}
+#victoryScreen {
+    background: lightblue;
     visibility: hidden;
 }
+/* #flag {
+    border-style: solid;
+    border-color: black;
+    border-width: 1px;
+} */
 button {
-    font-family: 'Courier New', Courier, monospace
+    font-family: 'Courier New', Courier, monospace;
+    margin: 2px;
 }
