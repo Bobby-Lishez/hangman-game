@@ -132,9 +132,9 @@ function loadCountry() {
         unGuessedLetters[k] = letters[k];
     }
     //choose a random word from the array of possible words
-    //answer = countries[Math.floor(Math.random() * countries.length)];
+    answer = countries[Math.floor(Math.random() * countries.length)];
         //or the debug version
-        answer = prompt("pick a country to test");
+        //answer = prompt("pick a country to test");
     console.log(answer);
     //Create a version of our string with proper capitalization for screen display
     caseAnswer = answer.replace( /\b./g, function(a){ return a.toUpperCase(); } );
