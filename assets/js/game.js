@@ -52,6 +52,9 @@ var lives;
 var score= 0;
 //the song to play when we win a round
 var victorySong = document.getElementById("anthem");
+//the sounds to play on a right or wrong guess
+var fail = document.getElementById("fail");
+var success = document.getElementById("success");
 //calling our start button for the event handler
 var link = document.getElementById("start");
 var guess;
@@ -62,8 +65,9 @@ var guess;
 function checkLetter(char) {
     //If the chosen letter is not in our word, lose a life
     if (answer.indexOf(char) === -1) {
-    lives--;
-    document.querySelector("#lives").innerHTML = "Lives Remaining: " + lives;
+        lives--;
+        document.querySelector("#lives").innerHTML = "Lives Remaining: " + lives;
+        fail.play();
     //if we run out of lives, we lose.
     if (lives === 0){gameOver()};
     //otherwise, game continues
@@ -73,7 +77,8 @@ function checkLetter(char) {
     //replace all instances of that letter in our blanks with the letter
     if (secretAnswer.charAt(j) === char){
         blanks = setCharAt(blanks, j, secretAnswer.charAt(j));
-        console.log(blanks);        
+        console.log(blanks);  
+        success.play();      
     }
     //and update the screen
     document.querySelector("#target").innerHTML = blanks;
@@ -127,9 +132,9 @@ function loadCountry() {
         unGuessedLetters[k] = letters[k];
     }
     //choose a random word from the array of possible words
-    answer = countries[Math.floor(Math.random() * countries.length)];
+    //answer = countries[Math.floor(Math.random() * countries.length)];
         //or the debug version
-        //answer = prompt("pick a country to test");
+        answer = prompt("pick a country to test");
     console.log(answer);
     //Create a version of our string with proper capitalization for screen display
     caseAnswer = answer.replace( /\b./g, function(a){ return a.toUpperCase(); } );

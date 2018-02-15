@@ -16,55 +16,58 @@
               <h1>Geo Hangman</h1>
             </div>
             <div class="card-body">
-                <!-- <div class= "row"> -->
                   <div id = "controls">
                     <div id ="controlsText">
-                      <p id = "target"></p>
-                      <p id = "lives"></p>
+                      <p id = "target">Press Start to begin.</p>
+                      <p id = "lives">Choose a letter with the buttons or keyboard.</p>
                       <p id = "score">Score: 0</p>
+                    </div>
+                      <div id = "buttonContainer">
                       <div class = "row">
-                    <!-- <div class = "col-sm-4"> -->
-                        <button id = "a" type = "button" class = "btn btn-primary letterButton" disabled>A</button>
-                        <button id = "b" type = "button" class = "btn btn-success letterButton" disabled>B</button>
-                        <button id = "c" type = "button" class = "btn btn-danger letterButton" disabled>C</button>
-                        <button id = "d" type = "button" class = "btn btn-warning letterButton" disabled>D</button>
-                        <button id = "e" type = "button" class = "btn btn-primary letterButton" disabled>E</button>
-                      <!-- </div> -->
-                      <!-- <div class = "col-sm-4"> -->
+                        <div id = "a-g">
+                          <button id = "a" type = "button" class = "btn btn-primary letterButton" disabled>A</button>
+                          <button id = "b" type = "button" class = "btn btn-success letterButton" disabled>B</button>
+                          <button id = "c" type = "button" class = "btn btn-danger letterButton" disabled>C</button>
+                          <button id = "d" type = "button" class = "btn btn-warning letterButton" disabled>D</button>
+                          <button id = "e" type = "button" class = "btn btn-primary letterButton" disabled>E</button>
                           <button id = "f" type = "button" class = "btn btn-success letterButton" disabled>F</button>
                           <button id = "g" type = "button" class = "btn btn-danger letterButton" disabled>G</button>
+                        <!-- end a-g -->
+                        </div>
+                        <div id = "h-m">
                           <button id = "h" type = "button" class = "btn btn-warning letterButton" disabled>H</button>
                           <button id = "i" type = "button" class = "btn btn-primary letterButton" disabled>I</button>
-                      <!-- </div> -->
-                      <!-- <div class = "col-sm-4"> -->
                           <button id = "j" type = "button" class = "btn btn-success letterButton" disabled>J</button>
                           <button id = "k" type = "button" class = "btn btn-danger letterButton" disabled>K</button>
                           <button id = "l" type = "button" class = "btn btn-warning letterButton" disabled>L</button>
                           <button id = "m" type = "button" class = "btn btn-primary letterButton" disabled>M</button>
-                      <!-- </div> -->
+                        <!-- end h-m -->
+                        </div>
+                      <!-- end row -->
                       </div>
                       <div class = "row">
-                        <!-- <div class = "col-sm-4"> -->
-                            <button id = "n" type = "button" class = "btn btn-success letterButton" disabled>N</button>
-                            <button id = "o" type = "button" class = "btn btn-danger letterButton" disabled>O</button>
-                            <button id = "p" type = "button" class = "btn btn-warning letterButton" disabled>P</button>
-                            <button id = "q" type = "button" class = "btn btn-primary letterButton" disabled>Q</button>
-                            <button id = "r" type = "button" class = "btn btn-success letterButton" disabled>R</button>
-                      <!-- </div> -->
-                        <!-- <div class = "col-sm-4"> -->
-                            <button id = "s" type = "button" class = "btn btn-danger letterButton" disabled>S</button>
-                            <button id = "t" type = "button" class = "btn btn-warning letterButton" disabled>T</button>
-                            <button id = "u" type = "button" class = "btn btn-primary letterButton" disabled>U</button>
-                            <button id = "v" type = "button" class = "btn btn-success letterButton" disabled>V</button>
-                        <!-- </div> -->
-                        <!-- <div class = "col-sm-4"> -->
-                            <button id = "w" type = "button" class = "btn btn-danger letterButton" disabled>W</button>
-                            <button id = "x" type = "button" class = "btn btn-warning letterButton" disabled>X</button>
-                            <button id = "y" type = "button" class = "btn btn-primary letterButton" disabled>Y</button>
-                            <button id = "z" type = "button" class = "btn btn-success letterButton" disabled>Z</button>
-                        <!-- </div> -->
+                        <div id = "n-t">
+                          <button id = "n" type = "button" class = "btn btn-success letterButton" disabled>N</button>
+                          <button id = "o" type = "button" class = "btn btn-danger letterButton" disabled>O</button>
+                          <button id = "p" type = "button" class = "btn btn-warning letterButton" disabled>P</button>
+                          <button id = "q" type = "button" class = "btn btn-primary letterButton" disabled>Q</button>
+                          <button id = "r" type = "button" class = "btn btn-success letterButton" disabled>R</button>
+                          <button id = "s" type = "button" class = "btn btn-danger letterButton" disabled>S</button>
+                          <button id = "t" type = "button" class = "btn btn-warning letterButton" disabled>T</button>
+                        <!-- end n-t -->
                         </div>
-                    <!-- end controlsText -->
+                        <div id = "u-z">
+                          <button id = "u" type = "button" class = "btn btn-primary letterButton" disabled>U</button>
+                          <button id = "v" type = "button" class = "btn btn-success letterButton" disabled>V</button>                      
+                          <button id = "w" type = "button" class = "btn btn-danger letterButton" disabled>W</button>
+                          <button id = "x" type = "button" class = "btn btn-warning letterButton" disabled>X</button>
+                          <button id = "y" type = "button" class = "btn btn-primary letterButton" disabled>Y</button>
+                          <button id = "z" type = "button" class = "btn btn-success letterButton" disabled>Z</button>
+                        <!-- end u-z -->
+                        </div>
+                        <!-- end row -->
+                        </div>
+                    <!-- end buttonContainer -->
                     </div>
                 <!-- end controls -->
                   </div>
@@ -81,13 +84,15 @@
     <button id = "start">Start</button>
     <div class = "card mt-3 mb-3" id = "victoryScreen">
       <div class = "card-body">
-        <p>Your last correct guess was <span id = "correct">Albania</span>!</p>
+        <p>Your last correct guess was <span id = "correct"></span>!</p>
         <img id = "flag" width = "500px" height = "400px" src ="#">
       </div>
     </div>
     <!-- end container -->
   </div>
-    <audio id = "anthem" src = "assets/sounds/albania.mp3"></audio>
+    <audio id = "anthem" src = "assets/sounds/afghanistan.mp3"></audio>
+    <audio id = "success" src = "assets/sounds/success.mp3"></audio>
+    <audio id = "fail" src = "assets/sounds/fail.mp3"></audio>
     <script
     src="https://code.jquery.com/jquery-3.3.1.js"
     integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
