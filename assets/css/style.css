@@ -19,13 +19,14 @@ button {
     margin: 2px;
 }
 @media screen and (max-width: 1200px) {
-    #buttonContainer {
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-    }
     #controls {
-        float: none;
+        width: 100%;
+        text-align: center;
+        margin: 0 auto;
+    }
+    #buttonContainer {
+        width: 100%;
+        margin: 0 auto;
     }
     #hangman {
         float: none;
@@ -35,10 +36,31 @@ button {
     }
     #flag {
         width: 100%;
-        height: 100%;
+        height: 80%;
+    }
+}
+@media screen and (max-width: 767px) {
+    #a-g {
+        width: 100%;
+        margin: 0 auto;
+    }
+    #h-m {
+        width: 90%;
+        margin: 0 auto;
+    }
+    #n-t {
+        width: 100%;
+        margin: 0 auto;
+    }
+    #u-z {
+        width: 90%;
+        margin: 0 auto;
     }
 }
 @media screen and (max-width: 475px) {
+    #controlsText {
+        font-size: 20px;
+    }
     #hangman {
         width: 100%;
         height: 100%;

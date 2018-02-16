@@ -100,8 +100,19 @@ function setCharAt(str,index,chr) {
 //function to bring up our game over screen
 function gameOver(){
     //Display game over message
-    //Prompt "play again?"
-    document.write("Game Over! The answer was " + answer + ". Reload the page to play again");
+    $("#target").text(secretAnswer);
+    $("#lives").text("Game over. Hit Start or press enter to start a new game");
+    score = 0;
+    $("#score").text("Score: 0");
+    //Disable keystrokes and buttons
+    for (var m = 0; m<letters.length; m++) {
+        document.getElementById(letters[m]).disabled=true;
+        unGuessedLetters[m] = "_";
+    }
+    //present the start button and hide the victory screen
+    document.getElementById("victoryScreen").style.visibility = "hidden";
+    document.getElementById("start").style.visibility = "visible";
+    document.querySelector("#start").innerHTML = "Start";
 }
 //function to bring up our victory screen
 function youWin(){
@@ -121,6 +132,7 @@ function youWin(){
     }
     document.getElementById("start").style.visibility = "visible";
     document.querySelector("#start").innerHTML = "Next";
+    $("#lives").html("Good Job. Hit Next or press Enter to continue.");
 }
 //function to load a country and begin a game round
 function loadCountry() {
@@ -164,9 +176,9 @@ $(".letterButton").on("click",function(event){
 document.onkeyup = function(event) {
     console.log(event.key);
     //enter to start a new game round
-    if(event.key = "Enter" && link.style.visibility == "visible"){loadCountry();}
+    if(event.keyCode === 13 && link.style.visibility == "visible"){loadCountry();}
     //only do a thing for letter keys
-    if (unGuessedLetters.indexOf(event.key) === -1){
+   else if (unGuessedLetters.indexOf(event.key) === -1){
         //do nothing
     }
     else {checkLetter(event.key);}
