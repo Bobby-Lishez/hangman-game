@@ -1,7 +1,7 @@
 //To do list:
 //onscreen buttons for mobile use CHECK
-//intro screen/victory screen/game over screen
-//make game an object
+//intro screen/victory screen/game over screen CHECK
+//hangman pics
 //disable non-letter keys from responses CHECK
 //fix "-" and "'" issue CHECK
 //fix capitalization SORT OF CHECK
@@ -52,9 +52,10 @@ var lives;
 var score= 0;
 //the song to play when we win a round
 var victorySong = document.getElementById("anthem");
-//the sounds to play on a right or wrong guess
+//the sounds to play on a right or wrong guess and game over
 var fail = document.getElementById("fail");
 var success = document.getElementById("success");
+var doom = document.getElementById("doom");
 //calling our start button for the event handler
 var link = document.getElementById("start");
 var guess;
@@ -67,6 +68,7 @@ function checkLetter(char) {
     if (answer.indexOf(char) === -1) {
         lives--;
         document.querySelector("#lives").innerHTML = "Lives Remaining: " + lives;
+        document.querySelector("#hangman").src = "assets/images/hang-" + lives + ".jpg";
         fail.play();
     //if we run out of lives, we lose.
     if (lives === 0){gameOver()};
@@ -101,9 +103,13 @@ function setCharAt(str,index,chr) {
 function gameOver(){
     //Display game over message
     $("#target").text(secretAnswer);
-    $("#lives").text("Game over. Hit Start or press enter to start a new game");
+    $("#lives").text("Game over. Hit Start or press enter to play again.");
     score = 0;
     $("#score").text("Score: 0");
+    //Carry out the sentence
+    document.querySelector("#hangman").src = "assets/images/hang-defeat.jpg";
+    victorySong.pause();
+    doom.play();
     //Disable keystrokes and buttons
     for (var m = 0; m<letters.length; m++) {
         document.getElementById(letters[m]).disabled=true;
@@ -111,7 +117,7 @@ function gameOver(){
     }
     //present the start button and hide the victory screen
     document.getElementById("victoryScreen").style.visibility = "hidden";
-    document.getElementById("start").style.visibility = "visible";
+    document.getElementById("start").style.display = "";
     document.querySelector("#start").innerHTML = "Start";
 }
 //function to bring up our victory screen
@@ -119,6 +125,8 @@ function youWin(){
     //Increment wins counter
     score++;
     document.querySelector("#score").innerHTML = "Score: " + score;
+    //Free the hangman
+    document.querySelector("#hangman").src = "assets/images/hang-victory.jpg";
     //Display the flag of the chosen country and play the national anthem
     document.querySelector("#correct").innerHTML = caseAnswer;
     document.querySelector("#anthem").src = "assets/sounds/" + answer + ".mp3";
@@ -130,14 +138,16 @@ function youWin(){
         document.getElementById(letters[m]).disabled=true;
         unGuessedLetters[m] = "_";
     }
-    document.getElementById("start").style.visibility = "visible";
+    document.getElementById("start").style.display = "";
     document.querySelector("#start").innerHTML = "Next";
     $("#lives").html("Good Job. Hit Next or press Enter to continue.");
 }
 //function to load a country and begin a game round
 function loadCountry() {
     //hide the start button
-    document.getElementById("start").style.visibility = 'hidden';
+    document.getElementById("start").style.display = "none";
+    //ready the gallows
+    document.querySelector("#hangman").src = "assets/images/hang-6.jpg";
     //reset the un-guessed letters for keystrokes and enable all the letter buttons
     for (var k = 0; k<letters.length; k++) {
         document.getElementById(letters[k]).disabled=false;
@@ -176,7 +186,7 @@ $(".letterButton").on("click",function(event){
 document.onkeyup = function(event) {
     console.log(event.key);
     //enter to start a new game round
-    if(event.keyCode === 13 && link.style.visibility == "visible"){loadCountry();}
+    if(event.keyCode === 13 && link.style.display == ""){loadCountry();}
     //only do a thing for letter keys
    else if (unGuessedLetters.indexOf(event.key) === -1){
         //do nothing
