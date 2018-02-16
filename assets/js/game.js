@@ -69,6 +69,8 @@ function checkLetter(char) {
         lives--;
         document.querySelector("#lives").innerHTML = "Lives Remaining: " + lives;
         document.querySelector("#hangman").src = "assets/images/hang-" + lives + ".jpg";
+        //little too loud
+        fail.volume = 0.2;
         fail.play();
     //if we run out of lives, we lose.
     if (lives === 0){gameOver()};
@@ -102,10 +104,10 @@ function setCharAt(str,index,chr) {
 //function to bring up our game over screen
 function gameOver(){
     //Display game over message
-    $("#target").text(secretAnswer);
-    $("#lives").text("Game over. Hit Start or press enter to play again.");
+    document.querySelector("#target").innerHTML = secretAnswer;
+    document.querySelector("#lives").innerHTML = "Game over. Hit Start or press enter to play again.";
     score = 0;
-    $("#score").text("Score: 0");
+    document.querySelector("#score").innerHTML = "Score: 0";
     //Carry out the sentence
     document.querySelector("#hangman").src = "assets/images/hang-defeat.jpg";
     victorySong.pause();
@@ -170,6 +172,7 @@ function loadCountry() {
         else                              {blanks = blanks + "_ ";secretAnswer = secretAnswer + answer.charAt(i) + " ";}
     }
     //put the blanks for the chosen word on-screen
+    document.querySelector("#target").style.fontFamily = "Courier New, Courier, monospace";
     document.querySelector("#target").innerHTML = blanks;
     console.log(secretAnswer);
     //reset our lives
